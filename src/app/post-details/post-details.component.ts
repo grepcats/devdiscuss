@@ -15,6 +15,7 @@ import { Comment } from '../models/comment.model';
 export class PostDetailsComponent implements OnInit {
   postId: string;
   postToDisplay;
+  commentsToDisplay;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class PostDetailsComponent implements OnInit {
       this.postId = urlParameters['id'];
     });
     this.postToDisplay = this.postService.getPostById(this.postId);
+    this.commentsToDisplay = this.commentService.getCommentsByPostId(this.postId);
   }
 
   postComment(commentText: string) {

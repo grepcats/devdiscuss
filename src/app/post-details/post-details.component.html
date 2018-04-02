@@ -2,7 +2,6 @@
   <p>{{(postToDisplay | async)?.title}}</p>
   <p>{{(postToDisplay | async)?.text}}</p>
   <p>{{(postToDisplay | async)?.date}}</p>
-
 </div>
 <div class="comments">
   <div class="form-group">
@@ -10,4 +9,8 @@
     <textarea #newCommentText class="form-control"></textarea>
   </div>
   <button class="btn btn-default" (click)="postComment(newCommentText.value); newCommentText.value=''">Submit</button>
+</div>
+
+<div *ngFor="let comment of commentsToDisplay | async">
+  <p>{{comment.commentText}} - {{comment.date}}</p>
 </div>

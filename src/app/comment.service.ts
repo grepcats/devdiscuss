@@ -5,16 +5,20 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Injectable()
 export class CommentService {
-  comments: FirebaseListObservable<any[]>
+  // comments: FirebaseListObservable<any[]>
   constructor(private database: AngularFireDatabase) {
-    this.comments = database.list('comments');
+    // this.comments = database.list('comments');
   }
 
-  getComments(){
-    return this.comments;
-  }
+  // getComments(){
+  //   return this.comments;
+  // }
 
   addComment(newComment: Comment, postId: string){
     this.database.list(`comments/${postId}`).push(newComment);
+  }
+
+  getCommentsByPostId(postId: string){
+    return this.database.list(`comments/${postId}`)
   }
 }
