@@ -32,6 +32,12 @@ export class PostEditComponent implements OnInit {
     this.postService.updatePost(postToUpdate);
   }
 
+  beginDeletingPost(postToDelete) {
+    if(confirm("Are you sure you want to delete this post?")){
+      this.postService.deletePost(postToDelete);
+    }
+  }
+
 
 
 

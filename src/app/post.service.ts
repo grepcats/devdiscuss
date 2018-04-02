@@ -27,4 +27,9 @@ export class PostService {
                                 text: localUpdatedPost.text});
   }
 
+  deletePost(deleteThisPost) {
+    let postEntryInFirebase = this.getPostById(deleteThisPost.$key);
+    postEntryInFirebase.remove();
+  }
+
 }
