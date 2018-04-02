@@ -11,6 +11,7 @@ import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { CommentNewComponent } from './comment-new/comment-new.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -25,7 +26,8 @@ export const firebaseConfig = {
     WelcomeComponent,
     PostNewComponent,
     PostListComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CommentNewComponent
   ],
   imports: [
     BrowserModule,
