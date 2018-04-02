@@ -1,0 +1,10 @@
+<h2>Edit Post</h2>
+<div class="form-group">
+  <label>Title</label>
+  <input [(ngModel)]="postToEdit.title">
+</div>
+<div class="form-group">
+  <label>Text</label>
+  <input [(ngModel)]="postToEdit.text">
+</div>
+<button (click)="beginUpdatingPost(postToEdit)" class="btn btn-default">Save Changes</button>

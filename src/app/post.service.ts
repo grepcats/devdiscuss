@@ -21,4 +21,10 @@ export class PostService {
     return this.database.object('posts/' + postId);
   }
 
+  updatePost(localUpdatedPost) {
+    let postEntryInFirebase = this.getPostById(localUpdatedPost.$key);
+    postEntryInFirebase.update({title: localUpdatedPost.title,
+                                text: localUpdatedPost.text});
+  }
+
 }

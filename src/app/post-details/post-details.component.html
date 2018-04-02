@@ -3,6 +3,10 @@
   <p>{{(postToDisplay | async)?.text}}</p>
   <p>{{(postToDisplay | async)?.date}}</p>
 </div>
+<button class="btn btn-default" (click)="timeToEdit()">Edit</button>
+<div *ngIf="editingTime">
+  <app-post-edit [postToEdit] ="(postToDisplay | async)"></app-post-edit>
+</div>
 <div class="comments">
   <div class="form-group">
     <label>Add Comment</label>
@@ -10,6 +14,7 @@
   </div>
   <button class="btn btn-default" (click)="postComment(newCommentText.value); newCommentText.value=''">Submit</button>
 </div>
+<hr>
 
 <div *ngFor="let comment of commentsToDisplay | async">
   <p>{{comment.commentText}} - {{comment.date}}</p>
