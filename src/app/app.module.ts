@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostNewComponent } from './post-new/post-new.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { routing } from './app.routing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -20,10 +23,15 @@ export const firebaseConfig = {
     AppComponent,
     WelcomeComponent,
     PostNewComponent,
-    PostListComponent,
+    PostListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    routing,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
