@@ -1,5 +1,5 @@
 export class Post {
   public edited: boolean = false;
-  public date: Date = new Date;
+  public date: string = Date();
   constructor (public title: string, public text: string){}
 }

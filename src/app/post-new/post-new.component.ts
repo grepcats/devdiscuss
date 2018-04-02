@@ -14,6 +14,8 @@ export class PostNewComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   addPost(postTitle: string, postText: string) {
+    let testPost = new Post(postTitle, postText);
+    console.log(testPost);
     this.postService.addPost(new Post(postTitle, postText))
   }
 

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { PostService } from '../post.service';
 
 
-
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -18,6 +17,10 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.postService.getPosts();
+  }
+
+  goToDetailPage(clickedPost){
+    this.router.navigate(['posts', clickedPost.$key])
   }
 
 }
