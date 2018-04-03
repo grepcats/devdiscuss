@@ -7,12 +7,13 @@ import { CommentService } from '../comment.service';
 import { Comment } from '../models/comment.model';
 import { Router } from '@angular/router';
 import { Post } from '../models/post.model';
+import { AuthGuardService } from '../auth-guard.service';
 
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css'],
-  providers: [ PostService, CommentService ]
+  providers: [ PostService, CommentService, AuthGuardService ]
 })
 export class PostDetailsComponent implements OnInit {
   postId: string;
@@ -28,7 +29,8 @@ export class PostDetailsComponent implements OnInit {
     private router: Router,
     private location: Location,
     private postService: PostService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private authGuardService: AuthGuardService
   ) { }
 
   ngOnInit() {
@@ -59,6 +61,7 @@ export class PostDetailsComponent implements OnInit {
   timeToEdit() {
     this.editingTime = true;
   }
+
 
   editPost() {
       // this.router.navigate(['posts', this.postId])

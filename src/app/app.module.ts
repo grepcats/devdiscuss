@@ -15,6 +15,9 @@ import { CommentNewComponent } from './comment-new/comment-new.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthGuardService } from './auth-guard.service'
+import { AuthenticationService } from './authentication.service';
+
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -43,7 +46,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthGuardService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

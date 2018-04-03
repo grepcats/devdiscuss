@@ -5,6 +5,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { AuthGuardService } from './auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'posts/:id',
-    component: PostDetailsComponent
+    component: PostDetailsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'posts/:id/edit',
