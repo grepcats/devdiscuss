@@ -6,6 +6,7 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 import { CommentService } from '../comment.service';
 import { Comment } from '../models/comment.model';
 import { Router } from '@angular/router';
+import { Post } from '../models/post.model';
 
 @Component({
   selector: 'app-post-details',
@@ -15,8 +16,8 @@ import { Router } from '@angular/router';
 })
 export class PostDetailsComponent implements OnInit {
   postId: string;
-  postToDisplay;
-  commentsToDisplay;
+  postToDisplay: Post;
+  commentsToDisplay: Comment[] = [];
   editingTime = false;
 
   //@Output() clickedEdit = new EventEmitter();
@@ -36,13 +37,19 @@ export class PostDetailsComponent implements OnInit {
     });
 
     this.postService.getPostById(this.postId).subscribe(dataLastEmittedFromObserver => {
-      this.postToDisplay = dataLastEmittedFromObserver;
+      this.postToDisplay = new Post(dataLastEmittedFromObserver.title,
+                                    dataLastEmittedFromObserver.text);
+      this.postToDisplay.date = dataLastEmittedFromObserver.date;
+      this.postToDisplay.edited = dataLastEmittedFromObserver.edited;
     });
 
-    this.commentService.getCommentsByPostId(this.postId).subscribe(dataLastEmittedFromObserver => { this.commentsToDisplay = dataLastEmittedFromObserver; });
+    this.commentService.getCommentsByPostId(this.postId).subscribe(dataLastEmittedFromObserver => { dataLastEmittedFromObserver.forEach(thisComment => {
+      let tempComment = new Comment(thisComment.commentText);
+      tempComment.date = thisComment.date;
+      this.commentsToDisplay.push(tempComment);
 
-
-  //  this.commentsToDisplay = this.commentService.getCommentsByPostId(this.postId);
+      });
+    });
   }
 
   postComment(commentText: string) {
