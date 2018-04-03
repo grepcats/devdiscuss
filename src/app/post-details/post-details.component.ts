@@ -34,9 +34,15 @@ export class PostDetailsComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.postId = urlParameters['id'];
     });
-    this.postToDisplay = this.postService.getPostById(this.postId);
-    console.log("this is in post-details " + this.postToDisplay.title);
-    this.commentsToDisplay = this.commentService.getCommentsByPostId(this.postId);
+
+    this.postService.getPostById(this.postId).subscribe(dataLastEmittedFromObserver => {
+      this.postToDisplay = dataLastEmittedFromObserver;
+    });
+
+    this.commentService.getCommentsByPostId(this.postId).subscribe(dataLastEmittedFromObserver => { this.commentsToDisplay = dataLastEmittedFromObserver; });
+
+
+  //  this.commentsToDisplay = this.commentService.getCommentsByPostId(this.postId);
   }
 
   postComment(commentText: string) {
