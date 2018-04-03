@@ -14,6 +14,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { CommentNewComponent } from './comment-new/comment-new.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     HttpModule,
     routing,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

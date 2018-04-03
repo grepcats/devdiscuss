@@ -8,6 +8,15 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a routerLink="posts">All Posts</a></li>
       <li><a routerLink="new">Add new Post</a></li>
+      <li *ngIf="isLoggedIn">
+        <a>{{userName}}</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a (click)="logout()">Log Out</a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a (click)="login()">Log In</a>
+      </li>
     </ul>
   </div>
 </nav>
