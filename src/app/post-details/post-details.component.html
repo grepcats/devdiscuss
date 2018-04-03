@@ -7,13 +7,12 @@
 <div *ngIf="editingTime">
   <app-post-edit [postToEdit] ="postToDisplay"></app-post-edit>
 </div>
-<div class="comments">
-  <div class="form-group">
-    <label>Add Comment</label>
-    <textarea #newCommentText class="form-control"></textarea>
+  <div *ngIf = "isLoggedIn">
+    <app-comment-new [PostId] = "postId"></app-comment-new>
   </div>
-  <button class="btn btn-default" (click)="postComment(newCommentText.value); newCommentText.value=''">Submit</button>
-</div>
+  <div *ngIf = "!isLoggedIn">
+    <p>Please log in to comment on this post</p>
+  </div>
 <hr>
 
 <div *ngFor="let comment of commentsToDisplay">
