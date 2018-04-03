@@ -22,12 +22,12 @@ const appRoutes: Routes = [
   },
   {
     path: 'posts/:id',
-    component: PostDetailsComponent,
-    canActivate: [AuthGuardService]
+    component: PostDetailsComponent
   },
   {
     path: 'posts/:id/edit',
-    component: PostEditComponent
+    component: PostEditComponent,
+    canActivate: [AuthGuardService]
   }
 ]
 
