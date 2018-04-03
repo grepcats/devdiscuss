@@ -3,14 +3,18 @@
   <p>{{postToDisplay?.text}}</p>
   <p>{{postToDisplay?.date}}</p>
 </div>
-<button class="btn btn-default" (click)="timeToEdit()">Edit</button>
-<div *ngIf="editingTime">
-  <app-post-edit [postToEdit] ="postToDisplay"></app-post-edit>
+
+<div *ngIf="isLoggedIn">
+  <button class="btn btn-default" (click)="timeToEdit()">Edit</button>
+</div>
+<div *ngIf="isLoggedIn && editingTime">
+  <app-post-edit [postToEdit] ="postToDisplay" [editingTime] = "editingTime" (changeEditingTime) = editingTimeIsFalse($event)></app-post-edit>
 </div>
   <div *ngIf = "isLoggedIn">
     <app-comment-new [PostId] = "postId"></app-comment-new>
   </div>
   <div *ngIf = "!isLoggedIn">
+    <hr>
     <p>Please log in to comment on this post</p>
   </div>
 <hr>

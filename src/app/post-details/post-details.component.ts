@@ -74,7 +74,12 @@ export class PostDetailsComponent implements OnInit {
 
 
   timeToEdit() {
+
     this.editingTime = true;
+  }
+
+  editingTimeIsFalse(newBool: boolean){
+    this.editingTime = newBool;
   }
 
 

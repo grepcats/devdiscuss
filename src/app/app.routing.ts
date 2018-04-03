@@ -18,7 +18,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'new',
-    component: PostNewComponent
+    component: PostNewComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'posts/:id',
@@ -26,8 +27,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'posts/:id/edit',
-    component: PostEditComponent,
-    canActivate: [AuthGuardService]
+    component: PostEditComponent
   }
 ]
 

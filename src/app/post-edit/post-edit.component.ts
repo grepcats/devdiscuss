@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { PostService } from '../post.service';
 import { FirebaseObjectObservable } from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-edit',
@@ -12,9 +13,12 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 })
 export class PostEditComponent implements OnInit {
   @Input() postToEdit;
+  @Input() editingTime;
+  @Output() changeEditingTime = new EventEmitter();
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private postService: PostService
   ) { }
@@ -30,6 +34,9 @@ export class PostEditComponent implements OnInit {
 
   beginUpdatingPost(postToUpdate) {
     this.postService.updatePost(postToUpdate);
+    this.router.navigate(['/posts/' + this.postId]);
+    this.editingTime = false;
+    this.changeEditingTime.emit(false);
   }
 
   beginDeletingPost(postToDelete) {
